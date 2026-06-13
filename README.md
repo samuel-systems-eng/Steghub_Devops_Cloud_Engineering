@@ -16,4 +16,4 @@ A complete manual deployment of a high-availability **LAMP (Linux, Apache, MySQL
 
 ## Repository Structure
 * **[/Prerequisites](./00_Prerequisites)**: Foundational environment assets, self-study modules, and baseline environment setups.
-* **`/LAMP_STACK`**: Configuration profiles, virtual host site rules, and deployment code scripts.
+* **[/LAMP_STACK](./01_LAMP_Stack)**: Configuration LAMP profiles, virtual host site rules, and deployment code scripts.
