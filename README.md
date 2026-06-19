@@ -12,8 +12,58 @@ A complete manual deployment of a high-availability **LAMP (Linux, Apache, MySQL
 * **Database Layer**: Deployed MySQL Server using secure authentication parameters.
 * **Application Routing**: Configured an Apache Virtual Host mapping a local test domain (`www.projectlamp`) and extracted server metadata (public hostname and IP) via AWS IMDSv2.
 
+## Project 2: LEMP Stack Deployment on AWS EC2
+
+A hands-on implementation of a high-performance web stack (Linux, Nginx, MySQL, PHP) provisioned on an AWS EC2 instance. This project covers core web server configuration, database persistence, dynamic PHP-FPM routing, and deep troubleshooting of modern cloud security protocols.
+
+### 📋 Task Checklist
+- [x] **Task 0**: Provision and configure an Ubuntu EC2 Instance on AWS.
+- [x] **Task 1**: Install and optimize the Nginx Web Server.
+- [x] **Task 2**: Install and secure the MySQL Database Server.
+- [x] **Task 3**: Install and configure PHP for dynamic server-side execution.
+- [x] **Task 4**: Configure Nginx to route traffic to the PHP-FPM processor.
+- [x] **Task 5**: Validate PHP-Nginx integration.
+- [x] **Task 6**: Write server-side scripts to dynamically query data from the MySQL database.
+
+---
+
+### 🛠️ Advanced Troubleshooting & Engineering Deep Dives
+
+During this implementation, two critical automation and security bottlenecks were identified and resolved regarding AWS Instance Metadata Service Version 2 (IMDSv2).
+
+#### 1. Secure Bash Shortcut for Public IP Lookup
+* **Issue**: Standard IMDSv1 calls (`curl 169.254.169.254/...`) returned blank outputs because AWS strictly enforces token-based **IMDSv2** to prevent Server-Side Request Forgery (SSRF) attacks. Additionally, long terminal configurations were failing due to SSH paste truncation bugs.
+* **Resolution**: Instead of compromising infrastructure security by downgrading to IMDSv1, a highly efficient, short bash alias was automated into `.bashrc` utilizing external secure redirects.
+* **Implementation**:
+  ```bash
+  sed -i '/alias get-ip=/d' ~/.bashrc && echo "alias get-ip='curl -sL ifconfig.me && echo'" >> ~/.bashrc && source ~/.bashrc
+  ```
+
+#### 2. Hybrid Hostname & IP Page Automation Script
+* **Issue**: Automating landing page generation via terminal scripts resulted in the web application displaying a massive dump of AWS historical release dates (e.g., `2007-01-19, latest`). Line-wrap truncation cut the AWS metadata URL short, causing the terminal to call the API root directory index and dump it directly into `index.html`.
+* **Resolution**: Developed a robust, short-line script that securely fetches a session token for internal hostname mapping via IMDSv2, while utilizing an ultra-short external hook for the public IP to eliminate line-wrap truncation risks.
+* **Implementation**:
+  ```bash
+  {
+    TOKEN=\$(curl -s -X PUT "169.254.169" -H "X-aws-ec2-metadata-token-ttl-seconds: 60")
+    PUB_HOST=(curl -s -H "X-aws-ec2-metadata-token: TOKEN" 169.254.169)
+    PUB_IP=\$(curl -sL ifconfig.me)
+
+    echo "Hello LEMP from hostname \(PUB_HOST with public IP\)PUB_IP" | sudo tee /var/www/projectLEMP/index.html > /dev/null
+  }
+  ```
+
+### 📈 Verified Output
+Running a curl request against the public IP successfully validates that the dynamic stack routing, Nginx configuration, and metadata mappings are operational:
+```bash
+\$ curl http://54.91.39.35
+Hello LEMP from hostname amazonaws.com with public IP 54.91.39.35
+```
+
+
 ---
 
 ## Repository Structure
 * **[/Prerequisites](./00_Prerequisites)**: Foundational environment assets, self-study modules, and baseline environment setups.
 * **[/LAMP_STACK](./01_LAMP_Stack)**: Configuration LAMP profiles, virtual host site rules, and deployment code scripts.
+* **[/LEMP_STACK](./02_LEMP_Stack)**: Configuration LEMP profiles, server blocks and site rules, and deployment code scripts.
