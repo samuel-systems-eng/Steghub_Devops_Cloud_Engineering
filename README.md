@@ -60,6 +60,22 @@ Running a curl request against the public IP successfully validates that the dyn
 Hello LEMP from hostname amazonaws.com with public IP 54.91.39.35
 ```
 
+## Project 3: MERN Stack Deployment on AWS EC2
+
+A complete deployment of a full-stack Todo application leveraging the MERN (MongoDB, Express, React, Node.js) architecture.
+
+### Technical Achievements
+- **Backend API**: Configured an Express.js backend on AWS running on port 5000 with environment variables dynamically managed by dotenvx.
+- **Database Layer**: Established a live, validated cloud handshake with a MongoDB Atlas cluster utilizing custom Mongoose schemas.
+- **Frontend Integration**: Maintained cross-origin communications using reverse routing proxies inside package.json to seamlessly bridge browser queries.
+- **Full CRUD Testing**: Successfully validated database actions (`POST`, `GET`, `DELETE`) across the AWS firewall utilizing external Postman payloads.
+
+### 🛠️ Real-World Troubleshooting & Engineering Win
+- **The Problem:** The application backend crashed on boot during initial database connection handshakes, throwing a fatal `MongoParseError` because it contained obsolete configuration properties (`useNewUrlParser` and `useUnifiedTopology`). 
+- **The Root Cause:** These legacy object parameters are deprecation landmines that completely break modern versions of Mongoose (v6+) and Node.js runtimes. 
+- **The Engineering Fix:** Refactored the database initialization configuration inside `index.js` via terminal-based Vim, stripping out the obsolete parameters to streamline the connection syntax and leverage native, automated Mongoose asynchronous connection drivers.
+- **Result:** Successfully secured a permanent, live cloud connection to the MongoDB Atlas database cluster without compromising application stability.
+
 
 ---
 
@@ -67,3 +83,5 @@ Hello LEMP from hostname amazonaws.com with public IP 54.91.39.35
 * **[/Prerequisites](./00_Prerequisites)**: Foundational environment assets, self-study modules, and baseline environment setups.
 * **[/LAMP_STACK](./01_LAMP_Stack)**: Configuration LAMP profiles, virtual host site rules, and deployment code scripts.
 * **[/LEMP_STACK](./02_LEMP_Stack)**: Configuration LEMP profiles, server blocks and site rules, and deployment code scripts.
+* **[/MERN_Stack](./03_MERN_Stack)**: Configuration MERN profiles, Mongoose schemas and database models, and deployment application code scripts.
+
