@@ -77,6 +77,38 @@ A complete deployment of a full-stack Todo application leveraging the MERN (Mong
 - **Result:** Successfully secured a permanent, live cloud connection to the MongoDB Atlas database cluster without compromising application stability.
 
 
+## Project 4: MEAN Stack Deployment on AWS EC2
+
+A complete deployment of a full-stack Book register application leveraging the MEAN (MongoDB, Express, Angular, Node.js) architecture.
+
+### Technical Achievements
+
+•	Backend API: Configured a scalable Express.js backend on an AWS EC2 instance powered by a Node.js runtime environment.
+
+•	Database Layer: Installed and configured a secure MongoDB database natively on the Ubuntu instance using custom Mongoose schemas for data validation.
+
+•	Frontend Integration: Maintained cross-origin communications using reverse routing configurations to seamlessly bridge Angular browser queries to backend services.
+
+•	Full CRUD Testing: Successfully validated database state actions (POST, GET, DELETE) live on the cloud network ecosystem.
+
+
+### 🛠️ Real-World Troubleshooting & Engineering Win
+
+Building locally is easy; deploying and debugging in the cloud is where real engineering happens. I encountered and resolved three critical production bottlenecks:
+
+1️⃣ Frontend Isolation
+
+•	The Problem: Frontend Isolation: The frontend layout was unreachable (Cannot GET /) because the “public” and “apps” asset folder was left outside the root repository directory.
+
+•	The Engineering Fix: File Organization: Relocated the “apps” and “public” folders into the main application root (~/Books/) using the Linux “mv” command.
+
+2️⃣ Syntax Typos
+
+•	The Problem: data wouldn't display because a typo (an extra .) on line 3 of script.js completely broke the initialization of the AngularJS engine.
+
+•	The Engineering Fix: Client Patch: Sanitized the “public/script.js” code into standard format (var app = angular.module('myApp', []);), and (app.controller…….) allowing the framework to safely communicate with MongoDB.
+
+
 ---
 
 ## Repository Structure
@@ -84,4 +116,4 @@ A complete deployment of a full-stack Todo application leveraging the MERN (Mong
 * **[/LAMP_STACK](./01_LAMP_Stack)**: Configuration LAMP profiles, virtual host site rules, and deployment code scripts.
 * **[/LEMP_STACK](./02_LEMP_Stack)**: Configuration LEMP profiles, server blocks and site rules, and deployment code scripts.
 * **[/MERN_Stack](./03_MERN_Stack)**: Configuration MERN profiles, Mongoose schemas and database models, and deployment application code scripts.
-
+* **[/MEAN_Stack](./04_MEAN_Stack)**: Configuration of MEAN profiles, deploy Mongoose schemas and database models, and sanitize code scripts.
