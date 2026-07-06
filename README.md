@@ -140,4 +140,4 @@ By deploying two distinct Ubuntu 24.04 LTS EC2 instances—one dedicated as a ha
 * **[/LEMP_STACK](./02_LEMP_Stack)**: Configuration LEMP profiles, server blocks and site rules, and deployment code scripts.
 * **[/MERN_Stack](./03_MERN_Stack)**: Configuration MERN profiles, Mongoose schemas and database models, and deployment application code scripts.
 * **[/MEAN_Stack](./04_MEAN_Stack)**: Configuration of MEAN profiles, deploy Mongoose schemas and database models, and sanitize code scripts.
-* **[/05_CLIENT_SERVER_ARCHITECTURE](./05_CLIENT_SERVER_ARCHITECTURE)**: Configuration of decoupled multi-tier AWS EC2 environments, deployment of secure MySQL network daemons, and troubleshooting of host-based authentication blocks.
+* **[/CLIENT_SERVER_ARCHITECTURE](./05_CLIENT_SERVER_ARCHITECTURE)**: Configuration of decoupled multi-tier AWS EC2 environments, deployment of secure MySQL network daemons, and troubleshooting of host-based authentication blocks.
