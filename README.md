@@ -109,6 +109,29 @@ Building locally is easy; deploying and debugging in the cloud is where real eng
 •	The Engineering Fix: Client Patch: Sanitized the “public/script.js” code into standard format (var app = angular.module('myApp', []);), and (app.controller…….) allowing the framework to safely communicate with MongoDB.
 
 
+## Project 5: Client-Server Architecture Implementation on AWS
+
+### 📝 Project Description
+This project demonstrates the practical decoupling of database services from application clients within an enterprise cloud network.  
+By deploying two distinct Ubuntu 24.04 LTS EC2 instances—one dedicated as a hardened MySQL Server and the other as a lightweight MySQL Client—I established a secure, low-latency multi-tier architecture. The core focus was managing isolated network environments, overriding default local loopback restrictions, and utilizing AWS internal VPC routing for secure data persistence.
+
+### 🚀 Technical Achievements
+* **Decoupled Architecture**: Successfully separated database infrastructure from client utilities, minimizing the attack surface of the database engine.
+  
+* **Network Hardening & Security**: Implemented least-privilege access rules within AWS Security Groups, locking down inbound TCP Port 3306 traffic exclusively to the client's internal private IP.
+  
+* **Targeted Identity Access Management (IAM)**: Overrode MySQL’s default local-only restrictions by provisioning a specialized remote user identity authenticated via `mysql_native_password`.
+  
+* **Network Daemon Configuration**: Reconfigured the server runtime socket binds (`bind-address = 0.0.0.0`) to accept non-local network interfaces without compromising local routing integrity.
+
+### 🛠️ Real-World Troubleshooting & Engineering Wins
+* **The "Host Not Allowed" (ERROR 1130) Triumph**: Encountered and resolved the classic remote handshake block where the server rejects the incoming EC2 internal hostname. I diagnosed this as a mismatch between MySQL’s internal host table and the AWS client private IP. Fixed it by mapping exact host wildcards (`'client'@'%'`) to ensure seamless scaling within the VPC.
+  
+* **Zero SSH-Tunneling Footprint**: Engineered a network path allowing direct MySQL utility client connections entirely over private AWS backplanes, removing the performance overhead and configuration complexity of SSH port-forwarding tunnels.
+  
+* **CRUD Integrity Validation**: Verified structural deployment from the remote client shell by building schemas (`test_db`), seeding data tables, and running complex queries across instances.
+
+
 ---
 
 ## Repository Structure
@@ -117,3 +140,4 @@ Building locally is easy; deploying and debugging in the cloud is where real eng
 * **[/LEMP_STACK](./02_LEMP_Stack)**: Configuration LEMP profiles, server blocks and site rules, and deployment code scripts.
 * **[/MERN_Stack](./03_MERN_Stack)**: Configuration MERN profiles, Mongoose schemas and database models, and deployment application code scripts.
 * **[/MEAN_Stack](./04_MEAN_Stack)**: Configuration of MEAN profiles, deploy Mongoose schemas and database models, and sanitize code scripts.
+* **[/Client_Server_Architecture](./05_CLIENT-SERVER-ARCHITECTURE)**: Configuration of decoupled multi-tier AWS EC2 environments, deployment of secure MySQL network daemons, and troubleshooting of host-based authentication blocks.
