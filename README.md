@@ -132,6 +132,25 @@ By deploying two distinct Ubuntu 24.04 LTS EC2 instances—one dedicated as a ha
 * **CRUD Integrity Validation**: Verified structural deployment from the remote client shell by building schemas (`test_db`), seeding data tables, and running complex queries across instances.
 
 
+## Project 6 - Web Solution with WordPress in AWS
+
+This repository documents the deployment of a secure, production-grade, two-tier WordPress web infrastructure on Amazon Web Services (AWS) using Red Hat Enterprise Linux (RHEL) 10. The architecture decouples the web presentation layer from the data management layer, using advanced logical volume management to optimize disk durability, isolation, and scalability.
+
+### 🚀 Technical Achievements
+
+*   **Multi-Tier Infrastructure Decoupling:** Implemented a highly secure, separated cluster utilizing two independent AWS EC2 instances (`t3.micro`) running RHEL 10 to segment presentation nodes from relational data stores.
+*   **Advanced Linux LVM Architecture:** Provisioned six independent AWS Elastic Block Store (EBS) data volumes across both nodes, initialized modern GUID Partition Tables (GPT) utilizing native binaries, and established custom Volume Groups (`webdata-vg` and `database-vg`).
+*   **Storage Segmentation & Resiliency:** Carved out dedicated, independent Logical Volumes (`apps-lv`, `db-lv`, and `logs-lv`) formatted with `ext4` filesystems to guarantee that application failures or log explosions never cascade to compromise core system data or database integrity.
+*   **Secure Private Subnet Handshake:** Enforced strict firewall perimeters by modifying AWS Security Groups to accept inbound relational database network requests exclusively on Port 3306 originating from the Web Server's specific Private IP address.
+*   **Automated AWS Mirror Integration:** Bypassed restrictive, mismatched entitlement network licenses by shifting package management streams (`dnf`/`yum`) to draw securely from local AWS Red Hat Update Infrastructure (RHUI) endpoints.
+
+### 🛠️ Troubleshooting & Engineering Wins
+
+*   **The RHEL 10 Version Pivot:** Faced a critical blockade where standard curriculum setup steps for `gdisk` and external Remi software streams failed due to RHEL 10's modern DNF5 deprecations. Successfully pivoted to modern, native `fdisk` implementations to write clean GPT schemes and leveraged RHEL 10's native upstream PHP 8.x engines to build a secure, zero-external-dependency software stack.
+*   **The Emergency Mode Boot-Loop Rescue:** Encountered a system panic where a timing conflict during system boot locked the Database Server into an Emergency Mode state (2/3 AWS status checks passed) due to un-initialized LVM subsystems during mounting. Conquered this obstruction by force-stopping the server, detaching the 10GB root storage volume, and sideloading it onto the operational Web Server as a secondary data block.
+*   **Configuration Hardening via Rescue Mounts:** Successfully mounted the broken root partition under a temporary `/mnt/rescue` pathway on the healthy web server, safely neutralized the blocking lines inside the raw `/etc/fstab` boot file, and re-attached the primary drive to its native slot.
+*   **Immunization via Safety Flags:** Permanently immunized the entire multi-server cloud deployment against future virtualization initialization delays by appending the advanced `_netdev,nofail` operating system parameters to all persistent disk mount mappings.
+
 ---
 
 ## Repository Structure
@@ -141,3 +160,4 @@ By deploying two distinct Ubuntu 24.04 LTS EC2 instances—one dedicated as a ha
 * **[/MERN_Stack](./03_MERN_Stack)**: Configuration MERN profiles, Mongoose schemas and database models, and deployment application code scripts.
 * **[/MEAN_Stack](./04_MEAN_Stack)**: Configuration of MEAN profiles, deploy Mongoose schemas and database models, and sanitize code scripts.
 * **[/CLIENT_SERVER_ARCHITECTURE](./05_CLIENT_SERVER_ARCHITECTURE)**: Configuration of decoupled multi-tier AWS EC2 environments, deployment of secure MySQL network daemons, and troubleshooting of host-based authentication blocks.
+* **[/WEB_SOLUTION_WITH_WORDPRESS](./06_WEB_SOLUTION_WITH_WORDPRESS)**: Implementation of web solution with wordpress, detailed implementation files, networking parameters, and core storage mapping scripts for this web deployment can be found in the active project directory.
