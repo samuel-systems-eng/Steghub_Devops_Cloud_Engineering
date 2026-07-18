@@ -4,29 +4,29 @@
 
 1. Launch a RedHat EC2 instance that serve as Web Server. Create 3 volumes in the same AZ as the web server ec2 each of 10GB and attach all 3 volumes one by one to the web server.
 
-![create_ec2_wp_webserv](../WP_WEB_SOLUTION_images/WP_STEP1_images/WP_S1_1_create_ec2_wp_webserver.png)
+![create_ec2_wp_webserver](../WP_WEB_SOLUTION_images/WP_STEP1_images/WP_S1_01_create_ec2_wp_webserver.png)  
 
-![ec2_webserver_securitygroup](../WP_WEB_SOLUTION_images/WP_STEP1_images/WP_S1_2_ec2_webserver_securitygroup.png)
+![ec2_webserver_securitygroup](../WP_WEB_SOLUTION_images/WP_STEP1_images/WP_S1_02_ec2_webserver_securitygroup.png)  
 
-![webserver_ebsvolumes](../WP_WEB_SOLUTION_images/WP_STEP1_images/WP_S1_3_webserver_ebsvolumes.png)
+![webserver_ebsvolumes](../WP_WEB_SOLUTION_images/WP_STEP1_images/WP_S1_03_webserver_ebsvolumes.png)
 
 2. Open up the Linux terminal to begin configuration.
 
 **ssh -i STEG_MEAN.pem ec2-user@100.31.160.149**
 
-![ssh_webserver](../WP_WEB_SOLUTION_images/WP_STEP1_images/WP_S1_4_ssh_webserver.png)
+![ssh server](../WP_WEB_SOLUTION_images/WP_STEP1_images/WP_S1_04_ssh_webserver.png)
 
 3. Use `lsblk` to inspect what block devices are attached to the server. All devices in Linux reside in /dev/directory. Inspect with `ls /dev/` and ensure all 3 newly created devices are there. Their name will likely be xvdf, xvdg and xvdh. Within the current Red Hat implementation, the block volume names changed to nvme1n1, nvme2n1 and nvme3n1.
 
 **lsblk**
 
-![check_ebs_volumes](../WP_WEB_SOLUTION_images/WP_STEP1_images/WP_S1_5_check_ebs_volumes.png)
+![check_ebs_volumes](../WP_WEB_SOLUTION_images/WP_STEP1_images/WP_S1_05_check_ebs_volumes.png)
 
 4. Use `df -h` to see all mounts and free space on the server.
 
 **df -h**
 
-![check_all_mounts](../WP_WEB_SOLUTION_images/WP_STEP1_images/WP_S1_6_check_all_mounts.png)
+![check_all_mounts](../WP_WEB_SOLUTION_images/WP_STEP1_images/WP_S1_06_check_all_mounts.png)
 
 5a. Use gdisk utility to create a single partition on each of the 3 disks. **[Note]** `fdisk` was used instead of gdisk because the server was running the recently updated Red Hat Enterprise Linux (RHEL) 10, which has entirely removed gdisk from its core software repositories.  
 
@@ -34,21 +34,21 @@ While older versions of Linux required gdisk to handle modern GUID Partition Tab
 
 **sudo fdisk /dev/nvme1n1**
 
-![partition_disk_e1](../WP_WEB_SOLUTION_images/WP_STEP1_images/WP_S1_7a_partition_disk_e1.png)
+![partition_disk_e1](../WP_WEB_SOLUTION_images/WP_STEP1_images/WP_S1_07a_partition_disk_e1.png)
 
 **sudo fdisk /dev/nvme2n1**
 
-![partition_disk_e2](../WP_WEB_SOLUTION_images/WP_STEP1_images/WP_S1_7b_partition_disk_e2.png)
+![partition_disk_e2](../WP_WEB_SOLUTION_images/WP_STEP1_images/WP_S1_07b_partition_disk_e2.png)
 
 **sudo fdisk /dev/nvme3n1**
 
-![partition_disk_e3](../WP_WEB_SOLUTION_images/WP_STEP1_images/WP_S1_7c_partition_disk_e3.png)
+![partition_disk_e3](../WP_WEB_SOLUTION_images/WP_STEP1_images/WP_S1_07c_partition_disk_e3.png)
 
 5b. Use `lsblk` utility to view the newly configured partitions on each of the 3 disks
 
 **lsblk**
 
-![check_new_partitions](../WP_WEB_SOLUTION_images/WP_STEP1_images/WP_S1_8_check_new_partitions.png)
+![check_new_partitions](../WP_WEB_SOLUTION_images/WP_STEP1_images/WP_S1_08_check_new_partitions.png)
 
 6. Install lvm package
 
@@ -177,55 +177,55 @@ Launch a second RedHat EC2 instance that will have a role - `DB Server`. Repeat 
 
 1. Create 3 volumes in the same AZ as the DB Server ec2 each of 10GB and attach all 3 volumes one by one to the DB Server.
 
-![create_ec2_dbserver](../WP_WEB_SOLUTION_images/WP_STEP2_images/WP_S2_1_create_ec2_dbserver.png)
+![create_ec2_dbserver](../WP_WEB_SOLUTION_images/WP_STEP2_images/WP_S2_01_create_ec2_dbserver.png)
 
-![dbserver_details](../WP_WEB_SOLUTION_images/WP_STEP2_images/WP_S2_2a_dbserver_details.png)
+![dbserver_details](../WP_WEB_SOLUTION_images/WP_STEP2_images/WP_S2_02a_dbserver_details.png)
 
-![dbserver_securitygroup](../WP_WEB_SOLUTION_images/WP_STEP2_images/WP_S2_2b_dbserver_securitygroup.png)
+![dbserver_securitygroup](../WP_WEB_SOLUTION_images/WP_STEP2_images/WP_S2_02b_dbserver_securitygroup.png)
 
-![dbserver_elbvolumes](../WP_WEB_SOLUTION_images/WP_STEP2_images/WP_S2_2c_dbserver_elbvolumes.png)
+![dbserver_elbvolumes](../WP_WEB_SOLUTION_images/WP_STEP2_images/WP_S2_02c_dbserver_elbvolumes.png)
 
-2. Open up the Linux terminal to begin configuration.
+1. Open up the Linux terminal to begin configuration.
 
 **ssh -i "STEG_MEAN.pem" ec2-user@100.48.97.150**
 
-![ssh_dbserver](../WP_WEB_SOLUTION_images/WP_STEP2_images/WP_S2_3_ssh_dbserver.png)
+![ssh dbserver](../WP_WEB_SOLUTION_images/WP_STEP2_images/WP_S2_03_ssh_dbserver.png)
 
 3. Use `lsblk` to inspect what block devices are attached to the server. Their name will likely be xvdf, xvdg and xvdh.
 
 **lsblk**
 
-![list_elb_disks](../WP_WEB_SOLUTION_images/WP_STEP2_images/WP_S2_4_list_elb_disks.png)
+![list_elb_disks](../WP_WEB_SOLUTION_images/WP_STEP2_images/WP_S2_04_list_elb_disks.png)
 
 4a. Use gdisk utility to create a single partition on each of the 3 disks.(fdisk utility was used for reasons discussed above)
 
 **sudo fdisk /dev/nvme1n1**
 
-![partition_disk_e1](../WP_WEB_SOLUTION_images/WP_STEP2_images/WP_S2_5a_partition_disk_e1.png)
+![partition_disk_e1](../WP_WEB_SOLUTION_images/WP_STEP2_images/WP_S2_05a_partition_disk_e1.png)
 
 **sudo fdisk /dev/nvme2n1**
 
-![partition_disk_e2](../WP_WEB_SOLUTION_images/WP_STEP2_images/WP_S2_5b_partition_disk_e2.png)
+![partition_disk_e2](../WP_WEB_SOLUTION_images/WP_STEP2_images/WP_S2_05b_partition_disk_e2.png)
 
 **sudo fdisk /dev/nvme3n1**
 
-![partition_disk_e3](../WP_WEB_SOLUTION_images/WP_STEP2_images/WP_S2_5c_partition_disk_e3.png)
+![partition_disk_e3](../WP_WEB_SOLUTION_images/WP_STEP2_images/WP_S2_05c_partition_disk_e3.png)
 
 4b. Use `lsblk` utility to view the newly configured partitions on each of the 3 disks
 
 **lsblk**
 
-![check_new_partitions](../WP_WEB_SOLUTION_images/WP_STEP2_images/WP_S2_6_check_new_partitions.png)
+![check_new_partitions](../WP_WEB_SOLUTION_images/WP_STEP2_images/WP_S2_06_check_new_partitions.png)
 
 5. Install lvm package ("rhel=10" was disabled due to mismatch between AWS updated image and Red Hat account restrictions to "rhel=9" to free developer account as discussed above)
 
 **sudo yum install lvm2 -y**
 
-![install_lvm2](../WP_WEB_SOLUTION_images/WP_STEP2_images/WP_S2_7_install_lvm2.png)
+![install_lvm2](../WP_WEB_SOLUTION_images/WP_STEP2_images/WP_S2_07_install_lvm2.png)
 
 Run sudo `lvmdiskscan` to check available partitions
 
-![check_lvmdiskscan](../WP_WEB_SOLUTION_images/WP_STEP2_images/WP_S2_8_check_lvmdiskscan.png)
+![check_lvmdiskscan](../WP_WEB_SOLUTION_images/WP_STEP2_images/WP_S2_08_check_lvmdiskscan.png)
 
 6. Use `pvcreate` utility to mark each of the 3 dicks as physical volumes (PVs) to be used by LVM.
 
@@ -237,7 +237,7 @@ Verify that each of the volumes and the VG have been created successfully.
 
 **sudo pvs**
 
-![checkandcreate_pvs](../WP_WEB_SOLUTION_images/WP_STEP2_images/WP_S2_9_checkandcreate_pvs.png)
+![checkandcreate_pvs](../WP_WEB_SOLUTION_images/WP_STEP2_images/WP_S2_09_checkandcreate_pvs.png)
 
 **sudo vgcreate database-vg /dev/nvme1n1 /dev/nvme2n1 /dev/nvme3n1**
 
@@ -314,7 +314,7 @@ Get the UUID of the device and Update the /etc/fstab file with the format shown 
 
 **sudo yum -y update**
 
-![update_server_packages](../WP_WEB_SOLUTION_images/WP_STEP3_images/WP_S3_1_update_server_packages.png)
+![update_server_packages](../WP_WEB_SOLUTION_images/WP_STEP3_images/WP_S3_01_update_server_packages.png)
 
 2. Install wget, Apache and it's dependencies
 
@@ -360,37 +360,37 @@ The package manager dnf was used here. It generally offers better performance an
 
 Now, the system version of the RHEL EC2 is version "10".  
 
-![running-rhel10](../WP_WEB_SOLUTION_images/WP_STEP3_images/WP_S3_7_running-rhel10.png)
+![running-rhel10](../WP_WEB_SOLUTION_images/WP_STEP3_images/WP_S3_07_running-rhel10.png)
 
 Since RHEL "10" was successfully installed from AWS Red Hat Update Infrastructure (RHUI) installations of lower versions registered as "already installed" and "complete".
 
 **sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-10.noarch.rpm**
 
-![install_php_dependencies](../WP_WEB_SOLUTION_images/WP_STEP3_images/WP_S3_4_install_php_dependencies.png)
+![install_php_dependencies](../WP_WEB_SOLUTION_images/WP_STEP3_images/WP_S3_04_install_php_dependencies.png)
 
 Install yum utils and enable remi-repository
 
 **sudo dnf install dnf-utils http://rpms.remirepo.net/enterprise/remi-release-9.rpm**
 
-![install_remirepo](../WP_WEB_SOLUTION_images/WP_STEP3_images/WP_S3_5_install_remirepo.png)
+![install_remirepo](../WP_WEB_SOLUTION_images/WP_STEP3_images/WP_S3_05_install_remirepo.png)
 
 After the successful installation of yum-utils and Remi-packages, search for the PHP modules which are available for download by running the command.
 
 **sudo dnf module list php**
 
-![list_php-but-already-installed-rhel10](../WP_WEB_SOLUTION_images/WP_STEP3_images/WP_S3_6_list_php-but-already-installed-rhel10.png)
+![list_php-but-already-installed-rhel10](../WP_WEB_SOLUTION_images/WP_STEP3_images/WP_S3_06_list_php-but-already-installed-rhel10.png)
 
 The output above indicates that if the currently installed version of PHP is PHP 8.1, there is need to install the newer release, PHP 8.2. Reset the PHP modules.
 
 **sudo dnf module reset php**
 
-![reset_php](../WP_WEB_SOLUTION_images/WP_STEP3_images/WP_S3_8_reset_php.png)
+![reset_php](../WP_WEB_SOLUTION_images/WP_STEP3_images/WP_S3_08_reset_php.png)
 
 Having run reset, enable the PHP 8.2 module by running
 
 **sudo dnf module enable php:remi-8.2**
 
-![enable_php](../WP_WEB_SOLUTION_images/WP_STEP3_images/WP_S3_9_enable_php.png)
+![enable_php](../WP_WEB_SOLUTION_images/WP_STEP3_images/WP_S3_09_enable_php.png)
 
 Install PHP, PHP-FPM (FastCGI Process Manager) and associated PHP modules using the command.
 
@@ -527,38 +527,38 @@ Open MySQL port 3306 on the DB Server EC2.
 
 For extra security, access to the DB Server is allowed only from the Web Server IP address. In the inbound rule, /32 is configured as source.
 
-![port_3306_opened](../WP_WEB_SOLUTION_images/WP_STEP6_images/WP_S6_1_port_3306_opened.png)
+![port_3306_opened](../WP_WEB_SOLUTION_images/WP_STEP6_images/WP_S6_01_port_3306_opened.png)
 
 2. Install mysql server on the Web Server EC2.
 WordPress has its own database, therefore it needs a database server to store it's information such as: Username, Email, Passwords, First name and Last name of the users on the wordpress website on a database.
 
 **sudo yum install mariadb**
 
-![install_mariadb](../WP_WEB_SOLUTION_images/WP_STEP6_images/WP_S6_2a_install_mariadb.png)
+![install_mariadb](../WP_WEB_SOLUTION_images/WP_STEP6_images/WP_S6_02a_install_mariadb.png)
 
-![install_mariadb](../WP_WEB_SOLUTION_images/WP_STEP6_images/WP_S6_2b_install_mariadb.png)
+![install_mariadb](../WP_WEB_SOLUTION_images/WP_STEP6_images/WP_S6_02b_install_mariadb.png)
 
 3. Change permissions and configure so Apache can use Wordpress
 
 The private IP address of the DB Server (172.31.16.100) is set as the DB_HOST because the DB Server and the Web Server resides in the same subnet which makes it possible for them to communicate directly. The private IP address is not an internet routable address.
 
-![modify_apache_config](../WP_WEB_SOLUTION_images/WP_STEP6_images/WP_S6_6_modify_apache_config.png)
+![modify_apache_config](../WP_WEB_SOLUTION_images/WP_STEP6_images/WP_S6_06_modify_apache_config.png)
 
 Restart so new configuration settings are applied 
 
-![terminal_vim_and_restart](../WP_WEB_SOLUTION_images/WP_STEP6_images/WP_S6_7_terminal_vim_and_restart.png)
+![terminal_vim_and_restart](../WP_WEB_SOLUTION_images/WP_STEP6_images/WP_S6_07_terminal_vim_and_restart.png)
 
 4. Test connection from webserver to DB
 
-![mariadb_from_webserver](../WP_WEB_SOLUTION_images/WP_STEP6_images/WP_S6_3_access_mariadb_from_webserver.png)
+![mariadb_from_webserver](../WP_WEB_SOLUTION_images/WP_STEP6_images/WP_S6_03_access_mariadb_from_webserver.png)
 
 5. Access DB server using private IP (172.31.16.100)
 
-![acces_dbserver_using_privateip](../WP_WEB_SOLUTION_images/WP_STEP6_images/WP_S6_8_acces_dbserver_using_privateip.png)
+![acces_dbserver_using_privateip](../WP_WEB_SOLUTION_images/WP_STEP6_images/WP_S6_08_acces_dbserver_using_privateip.png)
 
 Access the web page again with the Web Server public IP address and install wordpress on the browser
 
-![access_wp_from_server](../WP_WEB_SOLUTION_images/WP_STEP6_images/WP_S6_9_access_wp_from_server.png)
+![access_wp_from_server](../WP_WEB_SOLUTION_images/WP_STEP6_images/WP_S6_09_access_wp_from_server.png)
 
 ![login_wordpress](../WP_WEB_SOLUTION_images/WP_STEP6_images/WP_S6_10_login_wordpress.png)
 
