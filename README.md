@@ -151,6 +151,25 @@ This repository documents the deployment of a secure, production-grade, two-tier
 *   **Configuration Hardening via Rescue Mounts:** Successfully mounted the broken root partition under a temporary `/mnt/rescue` pathway on the healthy web server, safely neutralized the blocking lines inside the raw `/etc/fstab` boot file, and re-attached the primary drive to its native slot.
 *   **Immunization via Safety Flags:** Permanently immunized the entire multi-server cloud deployment against future virtualization initialization delays by appending the advanced `_netdev,nofail` operating system parameters to all persistent disk mount mappings.
 
+## Project 7 - Devops Tooling Website Solution in AWS
+
+This project implements a resilient, multi-node DevOps Tooling Website Solution utilizing a 3-tier architecture pattern within Amazon Web Services (AWS). 
+
+By decoupling the web application layer, database services, and network storage targets, the design achieves high availability, eliminates deployment drift, and provides an optimized infrastructure ready for horizontal scaling behind an Application Load Balancer.
+
+## Technical Achievements
+* **Decoupled 3-Tier Layering:** Implemented an enterprise-grade separation of concerns across a 3-Node Web Server cluster, a dedicated storage layer, and an independent database instance.
+* **Centralized Storage Fabric:** Architected a high-concurrency Network File System (NFS) to simultaneously serve shared application code assets (`/var/www/html`) and aggregate distributed system engine logs (`/var/log/httpd`).
+* **Storage Optimization via LVM:** Configured Logical Volume Management (LVM) on raw EBS storage devices to dynamically manage partition sizing for application and system logging directories.
+* **Modern DB Policy Management:** Applied secure access parameters using Subnet Mask Notation (`255.255.240.0`) to natively map network permissions within modern MySQL engines.
+* **Boot-Safe System Persistence:** Hardened system mount structures against critical network drops by appending `_netdev` and `nofail` parameter rules to the Linux `/etc/fstab` filesystem configurations.
+
+## Troubleshooting and Engineering Wins
+* **Overcoming Modern Database Constraints:** Resolved an `Error 1524 (Plugin not loaded)` failure caused by modern MySQL versions deprecating native password extensions. Remediated the block by transitioning to the secure `caching_sha2_password` mechanism while replacing unsupported CIDR formatting with explicit network subnet masks.
+* **Bypassing Network Mount Device Locks:** Identified and cleared `Device or resource busy` locks during log directory migrations on multi-node instances by orchestrating deliberate service teardowns, forcing clean network unmounts, and resetting folder structures with precise `apache:apache` context permissions.
+* **Mitigating SELinux Silent Failures:** Addressed an Apache `403 Forbidden` response and an initial service startup crash triggered by default RHEL SELinux policies blocking remote network stream writes. Safely transitioned the security module into a permanent `permissive` mode, satisfying data access needs while preserving underlying OS stability.
+
+
 ---
 
 ## Repository Structure
@@ -161,3 +180,5 @@ This repository documents the deployment of a secure, production-grade, two-tier
 * **[/MEAN_Stack](./04_MEAN_Stack)**: Configuration of MEAN profiles, deploy Mongoose schemas and database models, and sanitize code scripts.
 * **[/CLIENT_SERVER_ARCHITECTURE](./05_CLIENT_SERVER_ARCHITECTURE)**: Configuration of decoupled multi-tier AWS EC2 environments, deployment of secure MySQL network daemons, and troubleshooting of host-based authentication blocks.
 * **[/WEB_SOLUTION_WITH_WORDPRESS](./06_WEB_SOLUTION_WITH_WORDPRESS)**: Implementation of web solution with wordpress, detailed implementation files, networking parameters, and core storage mapping scripts for this web deployment can be found in the active project directory.
+* **[/DEVOPS_TOOLING_WEBSITE_SOLUTION](./07_DEVOPS_TOOLING_WEBSITE_SOLUTION)**: 
+The complete codebase, database schemas, and configuration scripts can be explored directly in the main project tree.
