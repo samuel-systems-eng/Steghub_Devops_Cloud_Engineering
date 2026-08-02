@@ -169,6 +169,30 @@ By decoupling the web application layer, database services, and network storage 
 * **Bypassing Network Mount Device Locks:** Identified and cleared `Device or resource busy` locks during log directory migrations on multi-node instances by orchestrating deliberate service teardowns, forcing clean network unmounts, and resetting folder structures with precise `apache:apache` context permissions.
 * **Mitigating SELinux Silent Failures:** Addressed an Apache `403 Forbidden` response and an initial service startup crash triggered by default RHEL SELinux policies blocking remote network stream writes. Safely transitioned the security module into a permanent `permissive` mode, satisfying data access needs while preserving underlying OS stability.
 
+## Project 8 - "Load Balancer Solution with Apache"
+
+This project demonstrates the implementation of a highly available, fault-tolerant web infrastructure utilizing an Apache HTTP Server as a Layer 7 Application Load Balancer. 
+
+The system routes inbound client traffic across a scalable cluster of Red Hat Enterprise Linux backend web workers, leveraging a centralized Network File System (NFS) for shared data storage and local DNS mappings for streamlined cluster communications.
+
+### Technical Achievements
+
+**Layer 7 Load Balancing**: Implemented an Ubuntu-based gateway utilizing mod_proxy_balancer to handle advanced content-based request routing.
+
+**Stateless Web Architecture**: Deployed a cluster of RHEL web workers serving identical application code assets simultaneously from a single central NFS mount.
+
+**Localized Log Isolation**: Configured Apache logging pipelines to write execution streams locally to individual server drives, preserving network storage bandwidth.
+
+**Local Name Resolution**: Established custom internal private DNS naming mappings within the /etc/hosts subsystem to eliminate dependency on raw IP address records.
+
+### Troubleshooting and Engineering Wins
+
+**Resolved Zombie Network Mounts**: Isolated and cleared a hidden duplicate mount gridlock spanning /`var/www` and `/var/www/html` by executing localized lazy unmount instructions (`umount -l`).
+
+**Fixed App Layer Processing Handshake**: Remediated a 502 Upstream Proxy Error by synchronizing the RHEL php-fpm processing daemon with Apache's configuration match structures.Sanatized Configuration 
+
+**Typographical Errors**: Mitigated server crash behaviors by targeting and replacing rich-text smart quote configurations with compliant straight ASCII formatting characters.
+
 
 ---
 
@@ -182,3 +206,5 @@ By decoupling the web application layer, database services, and network storage 
 * **[/WEB_SOLUTION_WITH_WORDPRESS](./06_WEB_SOLUTION_WITH_WORDPRESS)**: Implementation of web solution with wordpress, detailed implementation files, networking parameters, and core storage mapping scripts for this web deployment can be found in the active project directory.
 * **[/DEVOPS_TOOLING_WEBSITE_SOLUTION](./07_DEVOPS_TOOLING_WEBSITE_SOLUTION)**: 
 The complete codebase, database schemas, and configuration scripts can be explored directly in the main project tree.
+* **[/LOADBALANCER_SOLUTION_WITH_APACHE](./08_LOADBALANCER_WITH_APACHE)**: 
+The complete folder hierarchy, configuration scripts, and documentation files can be accessed directly inside the StegHub DevOps Cloud Engineering Repository.
