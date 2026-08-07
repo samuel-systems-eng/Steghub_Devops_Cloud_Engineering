@@ -193,6 +193,21 @@ The system routes inbound client traffic across a scalable cluster of Red Hat En
 
 **Typographical Errors**: Mitigated server crash behaviors by targeting and replacing rich-text smart quote configurations with compliant straight ASCII formatting characters.
 
+## Project 9 - Tooling Website Deployment Automation with Continuous Integration using Jenkins
+
+This project demonstrates the design and deployment of an automated Continuous Integration (CI) pipeline using a Jenkins server to systematically pull code changes from GitHub and securely distribute them to a target Red Hat Enterprise Linux (RHEL) NFS server environment.
+
+### Technical Achievements
+* Engineered a functioning Jenkins CI/CD controller instance on an AWS cloud environment.
+* Linked GitHub repository events directly to automation loops using SCM scheduling routines.
+* Automated build workspace cleanup pipelines to systematically maintain host drive health.
+* Established secure, non-interactive authentication between isolated cloud nodes using SSH keyrings.
+* Configured target RHEL data directories with optimized access permissions for application staging.
+
+### Troubleshooting and Engineering Wins
+* **Bypassed Legacy Plugin Failures:** Resolved a severe UI backend crash caused by the outdated `Publish over SSH` plugin by migrating to an enterprise-grade native `Execute Shell` configuration step.
+* **Resolved Multi-OS Identity Bottlenecks:** Debugged and resolved a persistent `Permission denied (publickey)` connection drop by pinpointing target OS parameters and swapping connection handles from `ubuntu` to `ec2-user` for the target RHEL server.
+* **Handled Workspace Case-Sensitivity Constraints:** Fixed a `stat local: No such file or directory` crash by tuning execution parameters to explicitly account for Linux case-sensitive file naming conventions.
 
 ---
 
@@ -208,3 +223,5 @@ The system routes inbound client traffic across a scalable cluster of Red Hat En
 The complete codebase, database schemas, and configuration scripts can be explored directly in the main project tree.
 * **[/LOADBALANCER_SOLUTION_WITH_APACHE](./08_LOADBALANCER_WITH_APACHE)**: 
 The complete folder hierarchy, configuration scripts, and documentation files can be accessed directly inside the StegHub DevOps Cloud Engineering Repository.
+* **[/TOOLING WEBSITE DEPLOYMENT AUTOMATION WITH CI USING JENKINS](./09_TOOLING_WEBSITE_WITH_CI_JENKINS)**: 
+The complete layout of deployment configuration files, automation scripts, and workflow document tracking can be viewed directly within the main source directory of the Steghub Devops Cloud Engineering Repository.
