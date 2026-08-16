@@ -209,7 +209,7 @@ This project demonstrates the design and deployment of an automated Continuous I
 * **Resolved Multi-OS Identity Bottlenecks:** Debugged and resolved a persistent `Permission denied (publickey)` connection drop by pinpointing target OS parameters and swapping connection handles from `ubuntu` to `ec2-user` for the target RHEL server.
 * **Handled Workspace Case-Sensitivity Constraints:** Fixed a `stat local: No such file or directory` crash by tuning execution parameters to explicitly account for Linux case-sensitive file naming conventions.
 
-# Project 10 - Load Balancer Solution with Nginx and SSL/TLS
+## Project 10 - Load Balancer Solution with Nginx and SSL/TLS
 
 This project focuses on designing and implementing a secure, highly available infrastructure utilizing an Nginx Layer 7 Load Balancer on AWS to distribute traffic across dual Red Hat Enterprise Linux (RHEL) web servers seamlessly integrated with centralized NFS shared storage.
 
