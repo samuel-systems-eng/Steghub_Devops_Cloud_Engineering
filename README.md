@@ -209,6 +209,23 @@ This project demonstrates the design and deployment of an automated Continuous I
 * **Resolved Multi-OS Identity Bottlenecks:** Debugged and resolved a persistent `Permission denied (publickey)` connection drop by pinpointing target OS parameters and swapping connection handles from `ubuntu` to `ec2-user` for the target RHEL server.
 * **Handled Workspace Case-Sensitivity Constraints:** Fixed a `stat local: No such file or directory` crash by tuning execution parameters to explicitly account for Linux case-sensitive file naming conventions.
 
+# Project 10 - Load Balancer Solution with Nginx and SSL/TLS
+
+This project focuses on designing and implementing a secure, highly available infrastructure utilizing an Nginx Layer 7 Load Balancer on AWS to distribute traffic across dual Red Hat Enterprise Linux (RHEL) web servers seamlessly integrated with centralized NFS shared storage.
+
+### Technical Achievements
+* Deployed an optimized Ubuntu-based Nginx Reverse Proxy with an AWS Elastic IP for robust traffic orchestration.
+* Structured upstream backend pools with custom server weight distributions for balanced resource load.
+* Implemented secure data-in-transit pipelines by configuring automated SSL/TLS termination at the load balancer layer.
+* Integrated cross-platform computing architectures cleanly matching Ubuntu proxies with Red Hat application layers.
+* Formatted persistent local hostname maps ensuring fast internal cluster communication over private VPC subnets.
+
+### Troubleshooting and Engineering Wins
+* **Resolved Configuration Hostname Syntax Faults:** Debugged initial domain mismatch parameters and configuration blocks within `/etc/nginx/nginx.conf`, ensuring precise Virtual Host resolution.
+* **Overcame RHEL Service Dependency Roadblocks:** Identified and fixed a service failure crash by launching missing native Red Hat `httpd` web daemons along with the critical `php-fpm` engine.
+* **Restored Inactive Storage Mount Paths:** Fixed a structural Apache startup crash (`DocumentRoot is not a directory`) by proactively creating missing paths and mounting the central NFS shared storage volume back into the server web root.
+* **Automated Let's Encrypt Certificate Issuance:** Debugged a Certbot domain authentication failure by configuring missing public DNS root A records in the ClouDNS console, achieving total domain verification and secure HTTPS enforcement.
+
 ---
 
 ## Repository Structure
@@ -225,3 +242,5 @@ The complete codebase, database schemas, and configuration scripts can be explor
 The complete folder hierarchy, configuration scripts, and documentation files can be accessed directly inside the StegHub DevOps Cloud Engineering Repository.
 * **[/TOOLING WEBSITE DEPLOYMENT AUTOMATION WITH CI USING JENKINS](./09_TOOLING_WEBSITE_WITH_CI_JENKINS)**: 
 The complete layout of deployment configuration files, automation scripts, and workflow document tracking can be viewed directly within the main source directory of the Steghub Devops Cloud Engineering Repository.
+* **[/LOAD BALANCER SOLUTION WITH NGINX AND SSL/TLS](./10_LOADBALANCER_WITH_NGINX_SSL)**: 
+The underlying architectural scripts, Nginx proxy files, and detailed implementation configuration configurations can be reviewed directly within the [Steghub DevOps Cloud Engineering Repository](https://github.com/samuel-systems-eng/Steghub_Devops_Cloud_Engineering).
