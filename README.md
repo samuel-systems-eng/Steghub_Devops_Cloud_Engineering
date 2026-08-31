@@ -226,6 +226,23 @@ This project focuses on designing and implementing a secure, highly available in
 * **Restored Inactive Storage Mount Paths:** Fixed a structural Apache startup crash (`DocumentRoot is not a directory`) by proactively creating missing paths and mounting the central NFS shared storage volume back into the server web root.
 * **Automated Let's Encrypt Certificate Issuance:** Debugged a Certbot domain authentication failure by configuring missing public DNS root A records in the ClouDNS console, achieving total domain verification and secure HTTPS enforcement.
 
+## Project 11 - Ansible Configuration Management (Automate Project 7 to 10)
+
+This project transitions our infrastructure management from manual server administration to systematic automation. By utilizing `Ansible` as an Infrastructure as Code (IaC) tool, we centralize and orchestrate the configuration of our entire web application cluster—including Web Servers, Shared Storage (NFS), Database Backends, and Load Balancers—directly from a unified Jenkins-Ansible control node.
+
+### Technical Achievements
+* **Centralized Configuration Control:** Established a dedicated Ansible execution environment on an AWS EC2 instance to manage inventory configurations remotely.
+* **Automated CI/CD Integration:** Implemented an automated build trigger pipeline utilizing GitHub Webhooks and Jenkins to package and archive playbooks.
+* **Declarative Tasks Management:** Formulated modular playbooks (`common.yml`) to systematically execute configuration definitions, such as updating repository packages and utility deployments uniformly across varying groups of servers.
+* **Dynamic SCM Architecture:** Engineered an agile Git strategy incorporating feature branches (`feature/prj-11-ansible-config`), code reviews, and remote peer-merging models into the `main` branch.
+
+### Troubleshooting and Engineering Wins
+* **Resolved Webhook 403 Forbidden Errors:** Identified and remediated a critical communication block where GitHub webhooks failed due to unauthenticated requests hitting non-standard routing paths. Resolved it by correctly updating the endpoint destination to `/github-webhook/` and enabling structural anonymous read validation within Jenkins settings.
+* **Overcame WSL Network and SSH Pathing Limits:** Navigated terminal file pathing changes when shifting execution platforms across localized environments, resolving backslash syntax errors by executing code within native Linux subsystem pathways.
+* **Defeated SSH Host Key Verification Blocks:** Bypassed automated deployment locks on unmapped client machines by dynamically isolating environment key checking rules without cluttering production configuration codebaselines.
+* **Managed System Disk Space Bottlenecks:** Recovered an offline Jenkins built-in execution node tracking beneath a critical 1GB storage threshold by implementing administrative file cleanups on localized workspaces.
+
+
 ---
 
 ## Repository Structure
@@ -244,3 +261,6 @@ The complete folder hierarchy, configuration scripts, and documentation files ca
 The complete layout of deployment configuration files, automation scripts, and workflow document tracking can be viewed directly within the main source directory of the Steghub Devops Cloud Engineering Repository.
 * **[/LOAD BALANCER SOLUTION WITH NGINX AND SSL/TLS](./10_LOADBALANCER_WITH_NGINX_SSL)**: 
 The underlying architectural scripts, Nginx proxy files, and detailed implementation configuration configurations can be reviewed directly within the [Steghub DevOps Cloud Engineering Repository](https://github.com/samuel-systems-eng/Steghub_Devops_Cloud_Engineering).
+
+* **[/ANSIBLE CONFIGURATION MANAGEMENT](./11_ANSIBLE_CONFIGURATION_MANAGEMENT)**:
+You can explore the live, complete layout of the system directories, inventory playbooks, and variable structures directly on the primary tracking page at [samuel-systems-eng/Steghub_Devops_Cloud_Engineering](https://github.com/samuel-systems-eng/Steghub_Devops_Cloud_Engineering).
