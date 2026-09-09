@@ -242,6 +242,22 @@ This project transitions our infrastructure management from manual server admini
 * **Defeated SSH Host Key Verification Blocks:** Bypassed automated deployment locks on unmapped client machines by dynamically isolating environment key checking rules without cluttering production configuration codebaselines.
 * **Managed System Disk Space Bottlenecks:** Recovered an offline Jenkins built-in execution node tracking beneath a critical 1GB storage threshold by implementing administrative file cleanups on localized workspaces.
 
+## Project 12 - Ansible Refactoring & Static Assignments (Imports and Roles)
+
+This project focuses on refactoring monolithic Ansible configurations into a modular, production-grade directory structure. By separating playbooks into static imports and dedicated roles, the automation codebase becomes cleaner, reusable, and optimized for scalable cloud deployments across multi-tier environments.
+
+### Technical Achievements
+* **Modularized Infrastructure Structure:** Developed a scalable layout utilizing structural roles and dedicated task files to separate environmental configuration concerns.
+* **Integrated Jenkins Automation Engine:** Configured an automated CI/CD loop that pulls code updates directly from GitHub on every commit, storing deployment artifacts cleanly.
+* **Orchestrated Cross-OS Clusters:** Successfully executed uniform playbook configurations across a mixed server fleet consisting of Ubuntu 26.04 controllers and RHEL 10 target endpoints.
+* **Optimized Variable Precedence:** Leveraged explicit host inventory variables to scale setups across differing environments safely.
+
+### Troubleshooting and Engineering Wins
+* **Resolved Permission Denials Securely:** Overcame a pipeline `AccessDeniedException` by mapping the controller user to the shared `jenkins` system group with a `775` permission matrix, avoiding insecure `777` global flags.
+* **Untangled Cross-OS Authentication Roadblocks:** Eliminated remote SSH connection failures (`Permission denied`) on the UAT fleet by identifying a Red Hat image variance and explicitly enforcing `ansible_user: ec2-user` within the YAML inventory logic.
+* **Corrected Multi-Playbook Import Syntax:** Resolved YAML parser document stream crashes by refactoring `playbooks/site.yml` into a top-level orchestration manifest free of duplicate document dividers or misaligned host blocks.
+* **Maintained Safe AWS Cloud Boundaries:** Structured runtime playbooks to gracefully handle unreachable hosts, allowing continuous testing while keeping unnecessary load balancer and database nodes powered down for cost containment.
+
 
 ---
 
@@ -264,3 +280,6 @@ The underlying architectural scripts, Nginx proxy files, and detailed implementa
 
 * **[/ANSIBLE CONFIGURATION MANAGEMENT](./11_ANSIBLE_CONFIGURATION_MANAGEMENT)**:
 You can explore the live, complete layout of the system directories, inventory playbooks, and variable structures directly on the primary tracking page at [samuel-systems-eng/Steghub_Devops_Cloud_Engineering](https://github.com/samuel-systems-eng/Steghub_Devops_Cloud_Engineering).
+
+* **[/ANSIBLE REFACTORING AND STATIC ASSIGNMENTS](./12_ANSIBLE_REFACTORING_AND_STATIC_ASSIGNMENTS)**:
+The complete live layout and codebase directories are managed under the core [Steghub DevOps Repository](https://github.com/samuel-systems-eng/Steghub_Devops_Cloud_Engineering).
