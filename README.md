@@ -258,6 +258,21 @@ This project focuses on refactoring monolithic Ansible configurations into a mod
 * **Corrected Multi-Playbook Import Syntax:** Resolved YAML parser document stream crashes by refactoring `playbooks/site.yml` into a top-level orchestration manifest free of duplicate document dividers or misaligned host blocks.
 * **Maintained Safe AWS Cloud Boundaries:** Structured runtime playbooks to gracefully handle unreachable hosts, allowing continuous testing while keeping unnecessary load balancer and database nodes powered down for cost containment.
 
+## Project 13: Ansible Dynamic Assignments (Include) and Community Roles
+
+This project demonstrates the implementation of a highly adaptive, automated multi-tier infrastructure environment using Ansible. By utilizing dynamic variable configurations and structuring modular community roles, the architecture establishes a seamless infrastructure-as-code deployment pipeline capable of hot-swapping frontend proxy routing tiers dynamically.
+
+### Technical Achievements
+* **Dynamic Variable Orchestration:** Implemented runtime environment evaluations using Ansible dynamic assignments (`include_vars` and `include_tasks`) to ingest variable files based on targeted deployment states.
+* **Multi-Tier Infrastructure Mapping:** Orchestrated end-to-end configuration for an NGINX/Apache Load Balancer tier, an active Apache/PHP Web Server node, and an isolated backend MySQL Database Instance.
+* **Component Modularity:** Abstracted environment-specific variables completely from execution code by utilizing a clean directory layout consisting of independent tasks, vars, and handles.
+* **Idempotent Application Streams:** Maintained environment immutability where repeated execution steps automatically evaluate and maintain target state parameters without data corruption.
+
+### Troubleshooting and Engineering Wins
+* **Resolved MySQL 8.4+ Authentication Error:** Fixed a fatal `Plugin 'mysql_native_password' is not loaded` block by injecting direct native SQL overrides on the database console and updating the web node's database connectors (`php-mysqlnd`) to securely use the `caching_sha2_password` standard.
+* **Bypassed RHEL 10 Package Repository Constraints:** Overcame RHEL 10 subscription entitlement restrictions on AWS instances by manually configuring clean mirror routing targets and switching the command-line utility client mapping to the natively supported, compatible MariaDB client package.
+* **Overrode SELinux Security Blockers:** Cleared a persistent `502 Bad Gateway / 404 Not Found` routing trap by applying targeted security context adjustments (`restorecon` and `chcon`) to authorize file execution pathways for Apache inside the Linux sandbox.
+* **Mitigated CPU Disk Wait (I/O) Memory Choking:** Resolved server freezes on a memory-starved database node by utilizing explicit playbook execution tag exclusions (`--skip-tags "update"`) to bypass resource-heavy system repository tracking loops.
 
 ---
 
@@ -283,3 +298,6 @@ You can explore the live, complete layout of the system directories, inventory p
 
 * **[/ANSIBLE REFACTORING AND STATIC ASSIGNMENTS](./12_ANSIBLE_REFACTORING_AND_STATIC_ASSIGNMENTS)**:
 The complete live layout and codebase directories are managed under the core [Steghub DevOps Repository](https://github.com/samuel-systems-eng/Steghub_Devops_Cloud_Engineering).
+
+* **[/ANSIBLE DYNAMIC ASSIGNMENTS AND COMMUNITY ROLES](./13_ANSIBLE_DYNAMIC_ASSIGNMENTS_AND_ROLES)**:
+This repository maintains a fully modularized Ansible playbook system separated into structural roles, environment parameter files, and an adaptive inventory map. The absolute architecture blueprint files and codebase configurations can be reviewed in detail directly on the [Steghub DevOps Cloud Engineering Repository](https://github.com/samuel-systems-eng/Steghub_Devops_Cloud_Engineering).
