@@ -274,6 +274,25 @@ This project demonstrates the implementation of a highly adaptive, automated mul
 * **Overrode SELinux Security Blockers:** Cleared a persistent `502 Bad Gateway / 404 Not Found` routing trap by applying targeted security context adjustments (`restorecon` and `chcon`) to authorize file execution pathways for Apache inside the Linux sandbox.
 * **Mitigated CPU Disk Wait (I/O) Memory Choking:** Resolved server freezes on a memory-starved database node by utilizing explicit playbook execution tag exclusions (`--skip-tags "update"`) to bypass resource-heavy system repository tracking loops.
 
+## Project 14: EXPERIENCE CONTINUOUS INTEGRATION WITH JENKINS | ANSIBLE | ARTIFACTORY | SONARQUBE | PHP
+
+This project establishes a distributed, multi-tier Continuous Integration and Continuous Deployment (CI/CD) system infrastructure on Amazon Web Services (AWS). By decoupling orchestration, compute, code quality analysis, and artifact storage layers, the pipeline implements an enterprise-ready GitFlow automation track that builds, validates, and deploys a PHP web application automatically upon source code changes.
+
+### 🚀 Technical Achievements
+
+* **Distributed Agent Architecture**: Provisioned and attached 2 dedicated Ubuntu worker nodes utilizing matched Java 21 runtime environments to balance execution loads away from the main Jenkins Master controller.
+* **Containerized Code Quality Gates**: Deployed a community Long-Term Support (LTS) SonarQube instance within an isolated container engine wrapper, tuning kernel resource thresholds (`vm.max_map_count`) to satisfy background Elasticsearch indexing allocations.
+* **Automated Webhook Sync**: Established end-to-end network routing lanes between GitHub hooks, the Jenkins server API, and SonarQube callback engines to achieve complete event-driven execution loops.
+* **Infrastructure-As-Code Centralization**: Formulated adaptive Ansible playbooks utilizing structured roles, variable dependencies, and custom inventory structures to manage network deployments uniformly across varying server classes.
+* **Artifact Locker Storage**: Integrated automated pipeline staging stages to package verified source code deliverables and push them securely into a centralized JFrog Artifactory repository layout.
+* **Security & Network Hardening**: Restricted communication protocols exclusively to private IP subnets over encrypted SSH channels (Port 22) and application target entry lines (Port 9000).
+
+### 🛠️ Troubleshooting & Engineering Wins
+
+* **Defeated Scripted MissingContextVariableException**: Resolved a structural pipeline crash where the tool engine could not parse binary paths by refactoring declarative `when` loops into Groovy-native conditional blocks (`if`) encapsulated tightly within active `node { ... }` workspace closures.
+* **Bypassed SonarQube Compute Engine Queue Deadlocks**: Remedied an infinite `PENDING` loop bug triggered by zero-file scanning indices on testing streams by transforming synchronous status check blocks into asynchronous drop-through models, unblocking downstream deployment execution paths.
+* **Java Bytecode Version Misalignment Fixes**: Isolated and eliminated immediate remoting connection terminations (`UnsupportedClassVersionError`) during node handshakes by identifying class file compilation discrepancies (65.0 vs 61.0) and upgrading runtime libraries uniformly across all slaves to OpenJDK 21.
+
 ---
 
 ## Repository Structure
@@ -301,3 +320,6 @@ The complete live layout and codebase directories are managed under the core [St
 
 * **[/ANSIBLE DYNAMIC ASSIGNMENTS AND COMMUNITY ROLES](./13_ANSIBLE_DYNAMIC_ASSIGNMENTS_AND_ROLES)**:
 This repository maintains a fully modularized Ansible playbook system separated into structural roles, environment parameter files, and an adaptive inventory map. The absolute architecture blueprint files and codebase configurations can be reviewed in detail directly on the [Steghub DevOps Cloud Engineering Repository](https://github.com/samuel-systems-eng/Steghub_Devops_Cloud_Engineering).
+
+* **[/CONTINUOUS INTEGRATION WITH JENKINS|ANSIBLE|ARTIFACTORY|SONARQUBE|PHP](./14_CONTINUOUS_INTEGRATION_WITH_JENKINS)**:
+The complete live directory hierarchy, modularized Ansible inventory maps, custom project files, and automated deployment script manifests for this continuous integration milestone can be reviewed in detail directly on the primary tracking branch at [samuel-systems-eng/Steghub_Devops_Cloud_Engineering](https://github.com/samuel-systems-eng/Steghub_Devops_Cloud_Engineering).
