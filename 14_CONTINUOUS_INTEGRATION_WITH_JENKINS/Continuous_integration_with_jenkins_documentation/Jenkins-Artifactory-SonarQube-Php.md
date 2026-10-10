@@ -1,11 +1,11 @@
 # EXPERIENCE CONTINUOUS INTEGRATION WITH JENKINS | ANSIBLE | ARTIFACTORY | SONARQUBE | PHP
 
 ## 📌 Table of Contents
-* [Part A: Initial Task Implementations](#part-a---experience-continuous-integration-with-jenkins-ansible-artifactory-sonarQube-and-PHP)
+* [Part A: Initial Task Implementations](#part-a---experience-continuous-integration-with-jenkins-ansible-artifactory-sonarqube-and-php)
 * [Part B: Resubmission Hardening & Remediation Engineering](#part-b---compliance-issues-and-remediation-engineering)
-  * [Section 1: Identified Compliance Gaps](##section-1---issues-raised-for-resubmission)
-  * [Section 2: Remediation Tasks Executed](##section-2---complete-set-of-tasks-completed-to-address-resubmission-issues)
-  * [Section 3: Summary and Attestation of Addressed Tasks](##section-3---summary-and-attestation-of-addressed-tasks)
+  * [Section 1: Identified Compliance Gaps](#section-1---issues-raised-for-resubmission)
+  * [Section 2: Remediation Tasks Executed](#section-2---complete-set-of-tasks-completed-to-address-resubmission-issues)
+  * [Section 3: Summary and Attestation of Addressed Tasks](#section-3---summary-and-attestation-of-addressed-tasks)
 
 ---
 
