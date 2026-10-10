@@ -1,14 +1,14 @@
 # EXPERIENCE CONTINUOUS INTEGRATION WITH JENKINS | ANSIBLE | ARTIFACTORY | SONARQUBE | PHP
 
 ## 📌 Table of Contents
-* [Part A: Initial Task Implementations](#part-a---experience-continuous-integration-with-jenkins-ansible-artifactory-sonarqube-and-php)
-* [Part B: Resubmission Hardening & Remediation Engineering](#part-b---compliance-issues-and-remediation-engineering)
-  * [Section 1: Identified Compliance Gaps](#section-1---issues-raised-for-resubmission)
-  * [Section 2: Remediation Tasks Executed](#section-2---complete-set-of-tasks-completed-to-address-resubmission-issues)
-  * [Section 3: Summary and Attestation of Addressed Tasks](#section-3---summary-and-attestation-of-addressed-tasks)
-
+* [Part A: Initial Task Implementations](#part-a)
+* [Part B: Resubmission Hardening & Remediation Engineering](#part-b)
+  * [Section 1: Identified Compliance Gaps](#section-1)
+  * [Section 2: Remediation Tasks Executed](#section-2)
+  * [Section 3: Summary and Attestation of Addressed Tasks](#section-3)
 ---
 
+<a name="part-a"></a>
 # PART A: Experience Continuous Integration with Jenkins, Ansible, Artifactory, SonarQube and PHP
 
 ## Overview
@@ -2726,9 +2726,10 @@ This task integrated an open-source, upstream automation module fetched directly
 
 •	The localized execution loop provided instant, 2-second telemetry feedback right on the screen, which allowed debugging the strict YAML spacing constraints rapidly.
 
-
+<a name="part-b"></a>
 # PART B: Compliance Issues and Remediation Engineering
 
+<a name="section-1"></a>
 ## Section 1: Issues-raised-for-resubmission
 
 1. Ensure there is one authoritative final implementation and ensure GitHub code, Jenkins pipeline and project documentation all match.
@@ -2753,7 +2754,7 @@ This task integrated an open-source, upstream automation module fetched directly
 20. Publish or maintain a LinkedIn reflection explaining the project, the problems you encountered, the security lessons learned and how you improved the pipeline;
 21. Connect GitHub, LinkedIn and your portfolio, where available, on the StegHub dashboard under “Be visible, don't learn in silence.”
 
-
+<a name="section-2"></a>
 ## Section 2: Complete set of tasks completed to address resubmission issues
 
 ### Step 1. All operational configuration credentials and security assets were moved entirely into the secure, encrypted Jenkins Credentials Vault database:
@@ -2987,7 +2988,7 @@ The Quality Gate actively enforced its security boundaries by triggering a FAILE
 
 Code coverage metrics reflect as 0.0% due to environment resource constraints. To maintain compliance with AWS strict free-tier compute limitations and prevent kernel panic processing crashes, the short-lived alpine test execution containers were streamlined to run functional unit tests cleanly while bypassing heavy kernel-tracing extensions (Xdebug/PCOV). SonarQube accurately ingested the resulting stateless output logs, providing full, transparent visibility into the operational realities of the container execution layer.
 
-
+<a name="section-3"></a>
 ## Section 3: Summary and Attestation of Addressed Tasks
 
 🛡️ Core Infrastructure & Compliance Attestation
