@@ -293,6 +293,71 @@ This project establishes a distributed, multi-tier Continuous Integration and Co
 * **Bypassed SonarQube Compute Engine Queue Deadlocks**: Remedied an infinite `PENDING` loop bug triggered by zero-file scanning indices on testing streams by transforming synchronous status check blocks into asynchronous drop-through models, unblocking downstream deployment execution paths.
 * **Java Bytecode Version Misalignment Fixes**: Isolated and eliminated immediate remoting connection terminations (`UnsupportedClassVersionError`) during node handshakes by identifying class file compilation discrepancies (65.0 vs 61.0) and upgrading runtime libraries uniformly across all slaves to OpenJDK 21.
 
+## Project 15 - AWS CLOUD SOLUTION FOR TWO (2) COMPANY WEBSITES USING A REVERSE PROXY TECHNOLOGY
+
+### Description
+
+This project involved designing and deploying a two-Availability-Zone AWS cloud infrastructure to host two company websites: WordPress and Tooling. Nginx was implemented as a reverse proxy to receive incoming web requests and route traffic to the appropriate backend application through internal Application Load Balancers. The solution incorporated AWS networking, compute, database and shared storage services to demonstrate a layered, scalable cloud infrastructure architecture.
+
+### Technical Achievements
+
+- Designed and configured a custom AWS Virtual Private Cloud (VPC) with CIDR block `10.0.0.0/16`.
+- Implemented a multi-AZ network architecture across two Availability Zones.
+- Created six subnets to separate public-facing infrastructure, application servers and database resources.
+- Configured public and private routing using route tables, an Internet Gateway and a NAT Gateway.
+- Deployed an internet-facing Application Load Balancer to receive external web traffic.
+- Configured Nginx as a reverse proxy to route incoming requests to the appropriate backend applications.
+- Implemented separate internal Application Load Balancers for WordPress and Tooling.
+- Used Amazon EC2 instances, Launch Templates and Auto Scaling Groups to manage application and supporting infrastructure.
+- Configured Amazon RDS MySQL with a multi-AZ deployment for database services.
+- Provisioned Amazon EFS for shared file storage.
+- Configured security groups to regulate communication between the different infrastructure layers.
+- Implemented domain-based access through the project's DNS configuration.
+- Integrated multiple AWS services into a functional cloud-hosted website architecture.
+
+### Troubleshooting and Engineering Wins
+
+- **Nginx upstream connectivity:** Identified and resolved an SELinux restriction preventing Nginx from communicating with backend application servers.
+- **SELinux configuration:** Enabled the `httpd_can_network_connect` boolean to permit the required Nginx outbound network connections.
+- **Reverse proxy integration:** Worked through Nginx configuration and backend routing issues to achieve communication between the public-facing reverse proxy and internal application infrastructure.
+- **Load balancer health checks:** Investigated target health and backend connectivity issues during deployment and testing.
+- **Application configuration:** Worked through application and infrastructure integration issues affecting the availability of the hosted websites.
+- **Infrastructure troubleshooting:** Gained practical experience tracing problems across networking, security groups, load balancers, Linux services and application layers.
+
+### Technologies and AWS Services
+
+- Amazon Web Services (AWS)
+- Amazon VPC
+- Amazon EC2
+- Application Load Balancer (ALB)
+- Auto Scaling Groups
+- Launch Templates
+- Amazon RDS (MySQL)
+- Amazon EFS
+- Internet Gateway
+- NAT Gateway
+- Route Tables
+- Security Groups
+- Nginx Reverse Proxy
+- Linux / CentOS
+- DNS
+
+### Learning Outcomes
+
+- Cloud infrastructure architecture and deployment.
+- Multi-AZ network design and subnet segmentation.
+- Reverse proxy configuration and backend traffic routing.
+- AWS compute, database and storage integration.
+- Linux administration and SELinux troubleshooting.
+- Application load balancing and infrastructure troubleshooting.
+- Cloud security and resource management.
+- Infrastructure lifecycle and cost-awareness practices.
+
+## Project Repository
+
+This project forms part of my StegHub DevOps and Cloud Engineering training portfolio. The repository contains project documentation, implementation files and supporting materials.
+
+Main repository: https://github.com/samuel-systems-eng/Steghub_Devops_Cloud_Engineering
 ---
 
 ## Repository Structure
@@ -323,3 +388,6 @@ This repository maintains a fully modularized Ansible playbook system separated 
 
 * **[/CONTINUOUS INTEGRATION WITH JENKINS|ANSIBLE|ARTIFACTORY|SONARQUBE|PHP](./14_CONTINUOUS_INTEGRATION_WITH_JENKINS)**:
 The complete live directory hierarchy, modularized Ansible inventory maps, custom project files, and automated deployment script manifests for this continuous integration milestone can be reviewed in detail directly on the primary tracking branch at [samuel-systems-eng/Steghub_Devops_Cloud_Engineering](https://github.com/samuel-systems-eng/Steghub_Devops_Cloud_Engineering).
+
+* **[/AWS CLOUD SOLUTION FOR TWO (2) COMPANY WEBSITES USING REVERSE PROXY TECHNOLOGY](./15_AWS_CLOUD_SOLUTION)**:
+The repository is organised into project-specific directories containing implementation files, configuration scripts, architecture documentation and supporting resources developed throughout the StegHub DevOps and Cloud Engineering programme. Explore the [StegHub DevOps and Cloud Engineering GitHub repository](https://github.com/samuel-systems-eng/Steghub_Devops_Cloud_Engineering) to access the complete project structure and documentation. 
